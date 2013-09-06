@@ -58,8 +58,7 @@ def deleteUser(userID):
 @app.route('/checkins')
 def getCheckIns():
 	return simplejson.dumps(get_all_checkins(database.db))
-
-
+	
 if __name__ == "__main__":
     app.secret_key = 'gbn98423jieu394jrfk9je92hk'
     app.debug = True
