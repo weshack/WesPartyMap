@@ -1,12 +1,17 @@
-from Flask import *
+from flask import *
 from database import *
 from datetime import datetime
 from time import mktime
+
 app = Flask(__name__)
 
+@app.route("/")
+def index():
+    return render_template("index.html")
+    
 @app.before_request
 def before_request():
-	database.db = connect_db()
+	database.db = connect_database()
 
 @app.route('/checkin/<user>/<latitude>/<longitude>')
 def checkIn(user, latitude, longitude):
@@ -22,3 +27,8 @@ def addUser(name, homeLat, homeLong):
 @app.route('/user/delete/<userID>')
 def deleteUser(userID):
 	delete_user(database.db, userID)
+
+if __name__ == "__main__":
+    app.secret_key = 'gbn98423jieu394jrfk9je92hk'
+    app.debug = True
+    app.run(host='0.0.0.0')
