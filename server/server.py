@@ -16,7 +16,7 @@ def index():
 @app.route('/checkin/<user>/<latitude>/<longitude>')
 def checkIn(user, latitude, longitude):
 	#purgeCheckIns()
-	if metersBetween([latitude, longitude], get_home(conn, user)) >= 100:
+	if metersBetween([latitude, longitude], get_home(database.db, user)) >= 100:
 		now = datetime.utcnow()
 		time = mktime(now.timetuple())
 		print(str(user) + str(latitude) + str(longitude) + str(time))
@@ -32,10 +32,10 @@ def purgeCheckIns():
 	purge_check_ins(database.db, time, timeago)
 
 def metersBetween(coord1, coord2):
-	lat1 = coord1[0]
-	long1 = coord1[1]
-	lat2 = coord2[0]
-	long2 = coord2[1]
+	lat1 = float(coord1[0])
+	long1 = float(coord1[1])
+	lat2 = float(coord2[0])
+	long2 = float(coord2[1])
 	degrees_to_radians = math.pi/180.0
 	phi1 = (90.0 - lat1)*degrees_to_radians
 	phi2 = (90.0 - lat2)*degrees_to_radians
