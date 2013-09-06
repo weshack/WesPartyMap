@@ -45,6 +45,7 @@ $(function(){
 					$("#info-pane").css('left','')
 					setTimeout(function(){
 						$("#info-pane").css('left', '80%')
+						$("#info-pane .name").html(name)
 					}, 1000);
 				});
 			})(response[i]['name']);
