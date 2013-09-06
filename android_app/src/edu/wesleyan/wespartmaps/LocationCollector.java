@@ -66,7 +66,7 @@ public class LocationCollector extends IntentService implements
 		HttpClient httpclient = new DefaultHttpClient();
 		try {
 			HttpResponse response = httpclient.execute(new HttpPost(
-					"http://54j9.localtunnel.com/checkin/" + id + "/"
+					"http://wespartymap.com/checkin/" + id + "/"
 							+ mLatitude + "/" + mLongitude));
 			StatusLine statusLine = response.getStatusLine();
 			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
@@ -116,7 +116,7 @@ public class LocationCollector extends IntentService implements
 			HttpClient httpclient = new DefaultHttpClient();
 			try {
 				HttpResponse response = httpclient.execute(new HttpPost(
-						"http://54j9.localtunnel.com/checkin/" + id + "/"
+						"http://wespartymap.com/checkin/" + id + "/"
 								+ mLatitude + "/" + mLongitude));
 				StatusLine statusLine = response.getStatusLine();
 				if (statusLine.getStatusCode() == HttpStatus.SC_OK) {

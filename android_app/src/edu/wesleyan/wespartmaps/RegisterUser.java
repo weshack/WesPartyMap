@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 class RegisterUser extends AsyncTask<Void, String, String> {
 	Activity mActivity;
@@ -34,7 +35,7 @@ class RegisterUser extends AsyncTask<Void, String, String> {
             HttpResponse response;
             String responseString = null;
             try {
-                response = httpclient.execute(new HttpGet("http://54j9.localtunnel.com/user/add/default/0/0"));
+                response = httpclient.execute(new HttpGet("http://wespartymap.com/user/add/default/0/0"));
                 StatusLine statusLine = response.getStatusLine();
                 if(statusLine.getStatusCode() == HttpStatus.SC_OK){
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -66,6 +67,8 @@ class RegisterUser extends AsyncTask<Void, String, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
+		TextView textView = (TextView)mActivity.findViewById(R.id.text);
+    	textView.setText(R.string.main);
 		Intent mServiceIntent = new Intent(mActivity, LocationCollector.class);
     	mActivity.startService(mServiceIntent);
 	}

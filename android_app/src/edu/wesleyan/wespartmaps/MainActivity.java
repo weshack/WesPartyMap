@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
@@ -17,6 +18,8 @@ public class MainActivity extends Activity {
         File file = getFileStreamPath("userid.info");
         if (!file.exists()){
         	Log.e("File:", "not found");
+        	TextView textView = (TextView)findViewById(R.id.text);
+        	textView.setText("Registering your phone with WesPartyMap...");
         	RegisterUser reg = new RegisterUser(this);
         	reg.execute();
         } else {
