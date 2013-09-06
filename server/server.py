@@ -21,9 +21,9 @@ def checkIn(user, latitude, longitude):
 		time = mktime(now.timetuple())
 		print(str(user) + str(latitude) + str(longitude) + str(time))
 		check_in(database.db, user, latitude, longitude, time)
-		return ''
-	else:
-		return simplejson.dumps('at home')
+		return simplejson.dumps({'message': 'OK'})
+	return simplejson.dumps({'message': 'at home'})
+	
 def purgeCheckIns():
 	now = datetime.utcnow()
 	ago = now - timedelta(hours=2)
