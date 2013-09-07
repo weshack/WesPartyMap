@@ -178,7 +178,7 @@ var loadComments = function () {
 
 var refreshComments = function () {
     $.getJSON("/comment").done(function(response){
-        console.log(response[0] + '  '+ $("#list-item-0").html())
+        //console.log(response[0] + '  '+ $("#list-item-0").html())
         if (response[0] != $("#list-item-0").html()){
             for (var i = response.length - 1; i >= 0; i--) {
                 $("#list-item-" + i).html(response[i]);
