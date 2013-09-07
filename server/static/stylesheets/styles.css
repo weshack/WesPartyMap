@@ -135,6 +135,12 @@ body {
 	text-decoration: underline;
 }
 
+#info-pane .return:hover {
+    opacity: .5;
+
+}
+
+
 #comments {
 	position: absolute;
 	bottom: 0;
