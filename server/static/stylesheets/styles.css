@@ -263,7 +263,7 @@ body {
 
 .form-wrapper input {
     position:absolute;
-    width: 73%;
+    width: 74%;
     height: 20px;
     bottom: 0px;
     left: 0px;
@@ -272,7 +272,7 @@ body {
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left:5px;
-    padding-right: 16px;
+    padding-right: 19px;
     float: left;   
     font: 15px 'Helvetica Neue';
     border: 0;
