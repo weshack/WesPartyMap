@@ -3,7 +3,7 @@ var heatmap;
 var pointArray;
 
 var samplePts = [];
-for (var i = 0; i < 10; i++){
+for (var i = 0; i < 300; i++){
     samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime()});
 }
 
@@ -21,10 +21,28 @@ for (var i = 0; i < 3; i++){
 
 
 for (var i = 0; i < 7; i++){
-    samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime() - 12*60000});
+    samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime() - 52*60000});
 }
 
-//Lat Long of foss --> (41.555, -72.65838)
+
+for (var i = 0; i < 2; i++){
+    samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime() - 62*60000});
+}
+
+
+for (var i = 0; i < 4; i++){
+    samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime() - 112*60000});
+}
+
+
+for (var i = 0; i < 4; i++){
+    samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime() - 82*60000});
+}
+
+
+for (var i = 0; i < 7; i++){
+    samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime() - 12*60000});
+}
 
 var loadPoints = function(){
 	$.getJSON("/checkins").done(function(response){
@@ -38,10 +56,10 @@ var loadPoints = function(){
 	});
 };
 
-var plotPoints = function(context, poly){
+var getPoints = function(context, poly){
     
     xs = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
-    ys = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+    ys = [0,0,0,0,0,0,0,0,0,0,0,0]
 
     for (var i = 0; i < samplePts.length; i++){
         pt = samplePts[i]
@@ -50,34 +68,82 @@ var plotPoints = function(context, poly){
             ys[minBefore/10] += 1; 
         }
     }
-    console.log(ys);
+    return [xs,ys];
+}
+var drawInfo = function(ctx, pts){
+    $("#info-pane canvas").hide();
+    $("#info-pane .description").show();
+    desc = ["great","slow"];
+    progress = ["getting better", "dying down"];
+    var perc = pts[1][0]/pointArray.length;
+     
+    var descNum = 1, progNum = 1;
+    
+    if (perc > .2)
+        descNum = 0;
+
+    if (pts[1][0] > pts[1][1])
+        progNum = 0;
+
+    $("#info-pane .description").html("This party is " + desc[descNum] + ", and it's " + progress[progNum] + "."
+        + "  <a href='#'>See graph here</a>");
+    $("#info-pane .description a").on('click', function(){
+        $("#info-pane canvas").show();
+        drawScreen(ctx,pts);
+        $("#info-pane .description").hide();
+    });
 }
 
-var drawScreen = function (context, poly) {
+var drawScreen = function (context, pts) {
     context.fillStyle = "#ffffff";
-    context.fillRect(0,0,200,100);
+    context.fillRect(0,0,200,300);
+    var divs = 11;
+    var xi = 25, yi = 50;
+    var gwidth = 165, gheight = 180; 
     
-    var xi = 10, yi = 80;
-    var gwidth = 180, gheight = 180; 
+    console.log(pts);
+    var ymax = Math.ceil(Math.max.apply(null, pts[1])/12)*12;
+    if (ymax == 0)
+        ymax = 12;
+
+    context.strokeStyle = "#000000";
     context.beginPath();
     context.lineWidth = "1";
     context.rect(xi, yi, gwidth, gheight);
     context.stroke();
     
-    context.strokeStyle = "#aaaaaa";
-    for (var i = 1; i < 8;i++){
-        context.beginPath();
-        context.moveTo(xi + i*(gwidth/8), yi)
-        context.lineTo(xi + i*(gwidth/8), yi + gheight);
-        context.stroke();
+    context.fillStyle = "black";
+    context.font = "10px Arial";
     
+    xlabs = ["-2hr", "-1.5hr", "-1hr", "-.5r", "now"];
+
+
+    context.strokeStyle = "#aaaaaa";
+    for (var i = 0; i < divs;i++){
         context.beginPath();
-        context.moveTo(xi, yi + i*(gheight/8));
-        context.lineTo(xi + gwidth, yi + i*(gheight/8));
+        context.moveTo(xi + i*(gwidth/divs), yi)
+        context.lineTo(xi + i*(gwidth/divs), yi + gheight);
+        context.stroke();
+        
+        context.fillText("" + ymax*(12 - i)/(divs+1), 5, yi + i*(gheight/divs) + 5);     
+
+        context.beginPath();
+        context.moveTo(xi, yi + i*(gheight/divs));
+        context.lineTo(xi + gwidth, yi + i*(gheight/divs));
         context.stroke();
     }
 
-    plotPoints(context, poly);
+
+    context.strokeStyle = "#0000ff";
+    
+    for (var i = 0; i < pts[0].length - 1; i++){
+        context.beginPath();
+        context.moveTo(xi + gwidth*(1- i/divs), yi + gheight * (1-pts[1][i]/ymax));
+        context.lineTo(xi + gwidth*(1-(i+1)/divs), yi + gheight * (1-pts[1][i+1]/ymax));
+        context.stroke();
+    }
+
+
 }
 
 
@@ -87,10 +153,12 @@ var canvasApp = function (poly) {
 
     var theCanvas = document.getElementById("canvas");
     var context = theCanvas.getContext("2d");
+
+    var pts = getPoints(context, poly);
     
     console.log("Drawing Canvas");
 
-    drawScreen(context, poly); 
+    drawInfo(context, pts); 
 }
 
 var loadComments = function () {
@@ -147,6 +215,7 @@ $(function(){
 					setTimeout(function(){
 						$("#info-pane").css('left', '80%')
 						$("#info-pane .name").html(name)
+                        canvasApp(poly);
                         setTimeout(function(){canvasApp(poly)}, 1000);
 					}, 1000);
 				});
