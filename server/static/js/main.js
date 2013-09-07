@@ -200,7 +200,7 @@ var canvasApp = function (poly) {
 var loadComments = function () {
     $.getJSON("/comment").done(function(response){
         $("#commentbox").html('')
-        console.log("response" + response)
+        //console.log("response" + response)
         if (response){
             for (var i = 8; i >= 0; i--) {
                 $('#commentbox').append($('<li>').attr('id',"list-item-" + i).html(response[i]))
@@ -214,7 +214,7 @@ var loadComments = function () {
 
 var refreshComments = function () {
     $.getJSON("/comment").done(function(response){
-        console.log(response[0] + '  '+ $("#list-item-0").html())
+        //console.log(response[0] + '  '+ $("#list-item-0").html())
         if (response[0] != $("#list-item-0").html()){
             for (var i = response.length - 1; i >= 0; i--) {
                 $("#list-item-" + i).html(response[i]);

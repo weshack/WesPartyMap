@@ -13,12 +13,24 @@
 CLLocationManager *locationManager;
 CLLocationManager *bglocationManager;
     NSTimer *timer;
+    NSString *user;
 
 
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self startStandardUpdates];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *file = [bundle pathForResource:@"user" ofType:@"txt"];
+    NSString *string = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+    NSLog(string);
+    if ([string length] > 0){
+        NSArray *data = [string componentsSeparatedByCharactersInSet:
+                          [NSCharacterSet characterSetWithCharactersInString:@","]
+                          ];
+        user = [data objectAtIndex:1];
+        
+        [self startStandardUpdates];
+    }
     // Override point for customization after application launch.
     return YES;
 }
@@ -88,8 +100,8 @@ CLLocationManager *bglocationManager;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (abs(howRecent) < 15.0) {
         // If the event is recent, do something with it.
-        NSString *name = @"10";
-        NSString *sendURL = [NSString stringWithFormat:@"http://3iny.localtunnel.com/checkin/%@/%f/%f", name, location.coordinate.latitude, location.coordinate.longitude];
+//        NSString *name = @"10";
+        NSString *sendURL = [NSString stringWithFormat:@"http://3iny.localtunnel.com/checkin/%@/%f/%f", user, location.coordinate.latitude, location.coordinate.longitude];
         NSURL *url = [NSURL URLWithString: sendURL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
