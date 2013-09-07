@@ -71,8 +71,6 @@ var getPoints = function(context, poly){
     return [xs,ys];
 }
 var drawInfo = function(ctx, pts){
-    $("#info-pane canvas").hide();
-    $("#info-pane .description").show();
     desc = ["great","slow"];
     progress = ["getting better", "dying down"];
     var perc = pts[1][0]/pointArray.length;
@@ -88,9 +86,8 @@ var drawInfo = function(ctx, pts){
     $("#info-pane .description").html("This party is " + desc[descNum] + ", and it's " + progress[progNum] + "."
         + "  <a href='#'>See graph here</a>");
     $("#info-pane .description a").on('click', function(){
-        $("#info-pane canvas").show();
+        $("#info-pane").toggleClass('flip');
         drawScreen(ctx,pts);
-        $("#info-pane .description").hide();
     });
 }
 
@@ -165,7 +162,7 @@ var loadComments = function () {
     console.log("Loading comments")
     $.getJSON("/comment").done(function(response){
         $("#commentbox").html('')
-        for (var i = response.length - 1; i >= 0; i--) {
+        for (var i = response.length - 2; i >= 0; i--) {
             $('#commentbox').append($('<li>').attr('id',"list-item-" + i).html(response[i]))
             
         };
