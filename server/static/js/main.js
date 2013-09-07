@@ -158,8 +158,9 @@ $(function(){
 $(function() {
     $('#submitComment').click(function() {
         var formdata = $('#new-comment-box').val();
-        console.log(formdata)
+        console.log(formdata);
         $.post('/comment', { 'message': formdata });
+        $('#new-comment-box').val('');
         return false;
     });
 });
