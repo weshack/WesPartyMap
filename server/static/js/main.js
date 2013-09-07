@@ -386,4 +386,7 @@ $(function(){
     $("#info-pane .return").on('click',function(){
         $("#info-pane").removeClass('flip');
     });
+    $("#more-btn").click(function(){
+        $("#more").toggleClass('active');
+    });
 });
