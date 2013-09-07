@@ -72,7 +72,7 @@ var getPoints = function(context, poly){
 }
 var drawInfo = function(ctx, pts){
     desc = ["great","slow"];
-    progress = ["getting better", "dying down"];
+    progress = ["getting better", "dying down", "static"];
     var perc = pts[1][0]/pointArray.length;
      
     var descNum = 1, progNum = 1;
@@ -82,6 +82,9 @@ var drawInfo = function(ctx, pts){
 
     if (pts[1][0] > pts[1][1])
         progNum = 0;
+    if (pts[1][0] == pts[1][1])
+        progNum = 2;
+
     $("#info-pane").removeClass('flip')
     $("#info-pane .description").html("This party is " + desc[descNum] + ", and it's " + progress[progNum] + "."
         + "  <a href='#'>See graph here</a>");
@@ -93,9 +96,9 @@ var drawInfo = function(ctx, pts){
 
 var drawScreen = function (context, pts) {
     context.fillStyle = "#ffffff";
-    context.fillRect(0,0,200,300);
+    context.fillRect(0,0,200,230);
     var divs = 11;
-    var xi = 25, yi = 50;
+    var xi = 25, yi = 30;
     var gwidth = 165, gheight = 180; 
     
     console.log(pts);
@@ -225,8 +228,6 @@ $(function(){
 		}
 	});
     loadComments()
-});
-$(function() {
     $('#submitComment').click(function() {
         var formdata = $('#new-comment-box').val();
         console.log(formdata);
@@ -234,6 +235,7 @@ $(function() {
         $('#new-comment-box').val('');
         return false;
     });
+    $("#info-pane .return").on('click',function(){
+        $("#info-pane").removeClass('flip');
+    });
 });
-
-
