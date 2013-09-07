@@ -20,13 +20,13 @@ a {
 	font-size: 30px;
 	
         color: white;
-        font-family: 'Nunito';
+        font-family: 'Raleway';
         background-color: #2c4762;
 }
 #title{
 	padding-left: 50px;
 	position: absolute;
-	bottom: 4px;
+	bottom: 6px;
 }
 #linkPromo{
 	
@@ -243,49 +243,38 @@ overflow:hidden;
 #list-item-0{
 	position:absolute;
 	bottom:0px;
-	height:14px;
 }
 #list-item-1{
 	position:absolute;
 	bottom:14px;
-	height:14px;
 }
 #list-item-2{
 	position:absolute;
 	bottom:28px;
-	height:14px;
-
 }
 #list-item-3{
 	position:absolute;
 	bottom:42px;
-	height:14px;
-
 }
 #list-item-4{
 	position:absolute;
 	bottom:56px;
-	height:14px;
 }
 #list-item-5{
 	position:absolute;
 	bottom:70px;
-	height:14px;
 }
 #list-item-6{
 	position:absolute;
 	bottom:84px;
-	height:14px;
 }
 #list-item-7{
 	position:absolute;
 	bottom:98px;
-	height:14px;
 }
 #list-item-8{
 	position:absolute;
 	bottom:112px;
-	height:14px;
 }
 
 .new-item {

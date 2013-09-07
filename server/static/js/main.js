@@ -312,6 +312,45 @@ var bestPlace = function(){
 	setTimeout(bestPlace, 1000*60*5);
 }
 
+var loadPolygons = function(response){
+	for (var i = 0; i < response.length; i++) {
+		var coords = response[i]['coordinates']
+		var areaPaths = coords.map(function(pt,ind,arr){
+			return new google.maps.LatLng(pt[1],pt[0]);
+		})
+		var p = new google.maps.Polygon({
+			paths: areaPaths,
+			fillColor: 'rgba(0,0,0,0)',
+			strokeColor: 'rgba(0,0,0,0)',
+			map: map
+		});
+		var heights = getPoints(p)[1]
+		var num = heights[0] + heights[1] + heights[2];
+		polygonPtCounts.push({
+			name: response[i]['name'],
+			number: num
+		});
+		(function (name, poly){
+			google.maps.event.addListener(poly, 'click', function(){ 
+				console.log(name)
+				$("#info-pane").css('left','')
+				setTimeout(function(){
+					$("#info-pane").css('left', '80%')
+					$("#info-pane .name").html(name)
+                       canvasApp(poly);
+                       setTimeout(function(){canvasApp(poly)}, 1000);
+				}, 1000);
+			});
+			google.maps.event.addListener(poly, 'mouseover', function(){
+				poly.setOptions({ fillColor: 'rgba(255,0,0,.5)'});
+			});
+			google.maps.event.addListener(poly, 'mouseout', function(){
+				poly.setOptions({ fillColor: 'rgba(255,0,0,0)'});
+			});
+		})(response[i]['name'], p);
+	}
+}
+
 $(function(){
     var mapOptions = {
         zoom: 16,
@@ -333,45 +372,8 @@ $(function(){
     	console.log(e.latLng)
     })
     loadPoints();
-    $.getJSON("/static/json/polygons.json").done(function(response){
-		for (var i = 0; i < response.length; i++) {
-			var coords = response[i]['coordinates']
-			var areaPaths = coords.map(function(pt,ind,arr){
-				return new google.maps.LatLng(pt[1],pt[0]);
-			})
-			var p = new google.maps.Polygon({
-				paths: areaPaths,
-				fillColor: 'rgba(0,0,0,0)',
-				strokeColor: 'rgba(0,0,0,0)',
-				map: map
-			});
-			var heights = getPoints(p)[1]
-			var num = heights[0] + heights[1] + heights[2];
-			polygonPtCounts.push({
-				name: response[i]['name'],
-				number: num
-			});
-			(function (name, poly){
-				google.maps.event.addListener(poly, 'click', function(){ 
-					console.log(name)
-					$("#info-pane").css('left','')
-					setTimeout(function(){
-						$("#info-pane").css('left', '80%')
-						$("#info-pane .name").html(name)
-                        canvasApp(poly);
-                        setTimeout(function(){canvasApp(poly)}, 1000);
-					}, 1000);
-				});
-				google.maps.event.addListener(poly, 'mouseover', function(){
-					poly.setOptions({ fillColor: 'rgba(255,0,0,.5)'});
-				});
-				google.maps.event.addListener(poly, 'mouseout', function(){
-					poly.setOptions({ fillColor: 'rgba(255,0,0,0)'});
-				});
-			})(response[i]['name'], p);
-		}
-		bestPlace();
-	});
+    $(document).one('ajaxStop',function(){$.getJSON("/static/json/polygons.json").done(loadPolygons)});
+    $(document).one('ajaxStop',bestPlace);
     loadComments()
     $('#submitComment').click(function() {
         var formdata = $('#new-comment-box').val();
