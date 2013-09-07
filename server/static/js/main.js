@@ -3,6 +3,7 @@ var heatmap;
 var pointArray;
 var polygonPtCounts = []
 var samplePts = [];
+/*
 for (var i = 0; i < 300; i++){
     samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime()});
 }
@@ -43,7 +44,7 @@ for (var i = 0; i < 4; i++){
 for (var i = 0; i < 7; i++){
     samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime() - 12*60000});
 }
-
+*/
 var loadPoints = function(){
 	$.getJSON("/checkins").done(function(response){
 		ret = [];
@@ -62,8 +63,8 @@ var getPoints = function(poly){
     xs = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
     ys = [0,0,0,0,0,0,0,0,0,0,0,0]
 
-    for (var i = 0; i < samplePts.length; i++){
-        pt = samplePts[i]
+    for (var i = 0; i < pointArray.length; i++){
+        pt = pointArray[i]
         if (poly.containsLatLng(new google.maps.LatLng(pt.latitude, pt.longitude))){
             minBefore = Math.floor((new Date().getTime() - pt.time)/60000/10)*10
             ys[minBefore/10] += 1; 
