@@ -67,7 +67,8 @@ var getPoints = function(poly){
         pt = pointArray[i]
         if (poly.containsLatLng(new google.maps.LatLng(pt.latitude, pt.longitude))){
             minBefore = Math.floor((new Date().getTime() - pt.time)/60000/10)*10
-            ys[minBefore/10] += 1; 
+            if (minBefore <= 110)
+                ys[minBefore/10] += 1; 
         }
     }
     return [xs,ys];
@@ -138,7 +139,7 @@ var drawScreen = function (context, pts) {
     var xi = 25, yi = 30;
     var gwidth = 165, gheight = 180; 
     
-    console.log(pts);
+    console.log(pts[1]);
     var ymax = Math.ceil(Math.max.apply(null, pts[1])/12)*12;
     if (ymax == 0)
         ymax = 12;
