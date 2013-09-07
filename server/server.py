@@ -23,7 +23,7 @@ def checkIn(user, latitude, longitude):
 		check_in(database.db, user, latitude, longitude, time)
 		return simplejson.dumps({'message': 'OK'})
 	return simplejson.dumps({'message': 'at home'})
-	
+
 def purgeCheckIns():
 	now = datetime.utcnow()
 	ago = now - timedelta(hours=2)
@@ -58,7 +58,16 @@ def deleteUser(userID):
 @app.route('/checkins')
 def getCheckIns():
 	return simplejson.dumps(get_all_checkins(database.db))
-	
+
+recent_comments = []
+@app.route('/comment', methods=['GET','POST'])
+def comment():
+	global recent_comments
+	if request.method == 'POST':
+		recent_comments = [ x for x in [request.args.get('message')].append(recent_comments[:8]) ]
+	else:
+		return json.dumps({'comments': recent_comments})
+
 if __name__ == "__main__":
     app.secret_key = 'gbn98423jieu394jrfk9je92hk'
     app.debug = True
