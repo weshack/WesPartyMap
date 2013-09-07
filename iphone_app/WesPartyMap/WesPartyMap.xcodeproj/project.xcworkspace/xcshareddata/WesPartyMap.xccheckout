@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>16DC6A5B-6870-40CB-8C17-D98F940C8F5C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WesPartyMap</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C8F9E516-68BD-4EA6-A549-6F821C6D09F4</key>
+		<string>ssh://github.com/weshack/WesPartyMap.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iphone_app/WesPartyMap/WesPartyMap.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C8F9E516-68BD-4EA6-A549-6F821C6D09F4</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/weshack/WesPartyMap.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C8F9E516-68BD-4EA6-A549-6F821C6D09F4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C8F9E516-68BD-4EA6-A549-6F821C6D09F4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WesPartyMap</string>
+		</dict>
+	</array>
+</dict>
+</plist>
