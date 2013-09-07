@@ -164,9 +164,12 @@ var canvasApp = function (poly) {
 var loadComments = function () {
     $.getJSON("/comment").done(function(response){
         $("#commentbox").html('')
-        for (var i = response.length - 2; i >= 0; i--) {
-            $('#commentbox').append($('<li>').attr('id',"list-item-" + i).html(response[i]))
-            $('#commentbox').scrollTop(10000);
+        console.log("response" + response)
+        if (response){
+            for (var i = 8; i >= 0; i--) {
+                $('#commentbox').append($('<li>').attr('id',"list-item-" + i).html(response[i]))
+                // $('#commentbox').scrollTop(10000);
+        }
         };
         // $("#list-item-0").css('opacity','1');
         setTimeout(refreshComments, 1000);
@@ -175,12 +178,13 @@ var loadComments = function () {
 
 var refreshComments = function () {
     $.getJSON("/comment").done(function(response){
+        console.log(response[0] + '  '+ $("#list-item-0").html())
         if (response[0] != $("#list-item-0").html()){
             for (var i = response.length - 1; i >= 0; i--) {
                 $("#list-item-" + i).html(response[i]);
                 if (i === 0){
                     $("#list-item-0").addClass('new-item');
-                    $('#commentbox').scrollTop($('#commentbox').scrollHeight);
+                    // $('#commentbox').scrollTop($('#commentbox').scrollHeight);
                     // $("#list-item-0").bind("webkitTransitionEnd mozTransitionEnd oTransitionEnd msTransitionEnd transitionend", function(){
                     setTimeout(function(){
                         $("#list-item-0").removeClass("new-item");
