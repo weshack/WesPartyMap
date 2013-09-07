@@ -57,13 +57,15 @@ $(function(){
     var mapOptions = {
         zoom: 16,
         center: new google.maps.LatLng(41.555, -72.65957),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        maxZoom: 18,
+        minZoom: 14
     };
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     heatmap = new google.maps.visualization.HeatmapLayer();
     heatmap.setMap(map);
     heatmap.setOptions({
-    	radius: 10,
+    	radius: 20,
     	maxIntensity: 20
     });
     loadPoints();
