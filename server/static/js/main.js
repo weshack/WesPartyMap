@@ -74,8 +74,43 @@ var getPoints = function(poly){
 var drawInfo = function(ctx, pts){
     desc = ["great","slow"];
     progress = ["getting better", "dying down", "static"];
+    
+    messages = [["This party is awesome! Get over here while it's still happening.",
+                 "There are tons of people here, and it's only getting better."],
+
+                ["It's a little slow right now, but things are starting to pick up.", 
+                 "It's still early and this party is just starting to get big"],
+        
+                ["Great night here, but it seems like it's starting to die down.",
+                 "This party may be slowing down, but it's not to late to make your way over."],
+
+                ["Not many people here, and it's not getting better any time soon.",
+                 "It's been slow and quiet around here."],
+
+                ["No party here tonight."]];
+
+    
     var perc = pts[1][0]/pointArray.length;
-     
+    
+    var messNum;
+    if (pts[1][0] == 0){
+        messNum = 4;
+        console.log("Here");
+    }else{
+    if (pts[1][0] > pts[1][1])
+        if (perc > .2)
+            messNum = 0;
+        else 
+            messNum = 1;
+    else 
+        if (perc > .2)
+            messNum = 2;
+        else
+            messNum = 3;
+    }
+    var variant = Math.floor(Math.random()*messages[messNum].length);
+
+
     var descNum = 1, progNum = 1;
     
     if (perc > .2)
@@ -87,7 +122,7 @@ var drawInfo = function(ctx, pts){
         progNum = 2;
 
     $("#info-pane").removeClass('flip')
-    $("#info-pane .description").html("This party is " + desc[descNum] + ", and it's " + progress[progNum] + "."
+    $("#info-pane .description").html(messages[messNum][variant]
         + "  <a href='#'>See graph here</a>");
     $("#info-pane .description a").on('click', function(){
         $("#info-pane").addClass('flip');
