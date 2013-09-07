@@ -56,6 +56,7 @@ a {
 	left: 110%;
 	background-color: transparent;
 	z-index: 3;
+	text-align: justify;
 	transition: left 1s ease-in;
 	-webkit-transition: left 1s ease-in;
 	-o-transition: left 1s ease-in;
@@ -373,7 +374,9 @@ a {
 
 #info-pane .return {
 	float: left;
+	position: relative;
 	margin: 5px 0px 0px 5px;
 	cursor: hand;
 	cursor: pointer;
+	z-index: 30;
 }
