@@ -36,11 +36,26 @@ a {
 	font-size: 18px;
 }
 #linkLabel{
+        
 	position: absolute;
 	right:200px;
 	bottom:12px;
 	width:auto;
 }
+
+#more{
+
+color:white;
+position: absolute;
+right:400px;
+bottom:12px;
+width:auto;
+font-size: 18px;
+
+
+}
+
+
 #iphoneLink{
 position:absolute;
 bottom:0px;
