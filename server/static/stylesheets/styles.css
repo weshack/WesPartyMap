@@ -1,5 +1,10 @@
 body {
 	overflow: hidden;
+	font-family: 'Helvetica Neue', serif;
+}
+
+a {
+	color: #888;
 }
 
 #header {
@@ -51,6 +56,7 @@ body {
 	left: 110%;
 	background-color: transparent;
 	z-index: 3;
+	text-align: justify;
 	transition: left 1s ease-in;
 	-webkit-transition: left 1s ease-in;
 	-o-transition: left 1s ease-in;
@@ -73,6 +79,7 @@ body {
 	background-color: #fff;
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	opacity: 1;
+	padding: 5px;
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -106,6 +113,7 @@ body {
 #info-pane .back {
 	background-color: #fff;
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	padding: 5px;
 	z-index: 10;
 	position: absolute;
 	left: 0;
@@ -162,12 +170,49 @@ body {
 	font: 12px 'Helvetica Neue';
 	position: absolute;
 	list-style-type: none;
-	bottom: 24px;
+	bottom: 25px;
 	left: 4px;
 	right:4px;
-	height: 114px;
+	height: 112px;
 	overflow-y:hidden;
 }
+#list-item-0{
+	position:absolute;
+	bottom:0px;
+}
+#list-item-1{
+	position:absolute;
+	bottom:14px;
+}
+#list-item-2{
+	position:absolute;
+	bottom:28px;
+}
+#list-item-3{
+	position:absolute;
+	bottom:42px;
+}
+#list-item-4{
+	position:absolute;
+	bottom:56px;
+}
+#list-item-5{
+	position:absolute;
+	bottom:70px;
+}
+#list-item-6{
+	position:absolute;
+	bottom:84px;
+}
+#list-item-7{
+	position:absolute;
+	bottom:98px;
+}
+#list-item-8{
+	position:absolute;
+	bottom:112px;
+}
+
 .new-item {
 	opacity:0;
 	-webkit-animation: new-item-wkanimation 0.5s linear forwards;
@@ -220,7 +265,7 @@ body {
   from {
     
     transform: translateY(20px);
-    -webkit-transform: translateY(20px);
+    -webkit-transform: translateY(14px);
   }
  
   to {
@@ -358,3 +403,17 @@ body {
     border: 0;
     padding: 0;
 }   
+
+#info-pane .back .name {
+	position: relative;
+	left: -5px;
+}
+
+#info-pane .return {
+	float: left;
+	position: relative;
+	margin: 5px 0px 0px 5px;
+	cursor: hand;
+	cursor: pointer;
+	z-index: 30;
+}
