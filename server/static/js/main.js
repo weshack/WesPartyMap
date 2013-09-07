@@ -1,7 +1,7 @@
 var map;
 var heatmap;
 var pointArray;
-
+var polygonPtCounts = []
 var samplePts = [];
 for (var i = 0; i < 300; i++){
     samplePts.push({latitude:41.5558487388, longitude:-72.6585519627, time:new Date().getTime()});
@@ -50,13 +50,14 @@ var loadPoints = function(){
 		for (var i = 0; i < response.length; i++){
 			ret.push(new google.maps.LatLng(response[i]['latitude'],response[i]['longitude']));
 		}
-                pointArray = response;
+		pointArray = response;
 		console.log("We have " + pointArray.length + " points loaded.")
     	heatmap.setData(new google.maps.MVCArray(ret));
+    	numNewPts();
 	});
 };
 
-var getPoints = function(context, poly){
+var getPoints = function(poly){
     
     xs = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
     ys = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -154,7 +155,7 @@ var canvasApp = function (poly) {
     var theCanvas = document.getElementById("canvas");
     var context = theCanvas.getContext("2d");
 
-    var pts = getPoints(context, poly);
+    var pts = getPoints(poly);
     
     console.log("Drawing Canvas");
 
@@ -236,11 +237,28 @@ var checkPos = function(){
 	setTimeout(checkPos, 500);
 }
 
-var numNewPts = function(pts){
-	console.log(pts.filter(function(el,ind,arr){
+var numNewPts = function(){
+	$("#recent").html(pointArray.filter(function(el,ind,arr){
 		return ((new Date()) - (new Date(el.time))) < 1000*60*30
 	}).length)
-	console.log(pts.length)
+	setTimeout(numNewPts, 1000*60*5);
+}
+
+var bestPlace = function(){
+	var max = 0;
+	var best = null;
+	for (var i = 0; i < polygonPtCounts.length; i++){
+		if (polygonPtCounts[i].number > max){
+			max = polygonPtCounts[i].number
+			best = polygonPtCounts[i].name
+		}
+	}
+	if (max > 0) {
+		$("#best-place").html("The best party tonight is over at " + best + ".");
+	} else {
+		$("#best-place").html("There are no parties!");
+	}
+	setTimeout(bestPlace, 1000*60*5);
 }
 
 $(function(){
@@ -276,6 +294,12 @@ $(function(){
 				strokeColor: 'rgba(0,0,0,0)',
 				map: map
 			});
+			var heights = getPoints(p)[1]
+			var num = heights[0] + heights[1] + heights[2];
+			polygonPtCounts.push({
+				name: response[i]['name'],
+				number: num
+			});
 			(function (name, poly){
 				google.maps.event.addListener(poly, 'click', function(){ 
 					console.log(name)
@@ -295,6 +319,7 @@ $(function(){
 				});
 			})(response[i]['name'], p);
 		}
+		bestPlace();
 	});
     loadComments()
     $('#submitComment').click(function() {
