@@ -44,6 +44,19 @@ def get_all_checkins(conn):
 		check = {'latitude': res[1],'longitude': res[2],'time': res[3]}
 		checkins.append(check)
 	return checkins
+def get_comments(conn):
+	c = conn.cursor()
+	result = c.execute("select * from comments order by uid desc limit 10")
+	comments = []
+	for res in result:
+		com = res[1]
+		comments.append(com)
+	return comments
+
+def add_comment(conn, comment):
+	c = conn.cursor()
+	c.execute("insert into comments (comment) VALUES ({0})".format(json.dumps(comment)))
+	return ''
 
 def purge_check_ins(conn, time, timeago): #Need to test this
 	c = conn.cursor()

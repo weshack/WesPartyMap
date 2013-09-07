@@ -59,14 +59,16 @@ def deleteUser(userID):
 def getCheckIns():
 	return simplejson.dumps(get_all_checkins(database.db))
 
-recent_comments = []
+recent_comments = ["comment","comment3","commentqwq"]
 @app.route('/comment', methods=['GET','POST'])
 def comment():
 	global recent_comments
 	if request.method == 'POST':
-		recent_comments = [ x for x in [request.args.get('message')].append(recent_comments[:8]) ]
+		print(request.form['message'])
+		recent_comments = [ x for x in ([request.form['message']] + recent_comments[:8]) ]
+		return ''
 	else:
-		return json.dumps({'comments': recent_comments})
+		return json.dumps(recent_comments)
 
 if __name__ == "__main__":
     app.secret_key = 'gbn98423jieu394jrfk9je92hk'

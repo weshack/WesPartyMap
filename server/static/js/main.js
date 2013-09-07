@@ -53,6 +53,24 @@ var canvasApp = function () {
     drawScreen(context); 
 }
 
+var loadComments = function () {
+    console.log("Loading comments")
+    $.getJSON("/comment").done(function(response){
+        $("#commentbox").html('')
+        for (var i = response.length - 1; i >= 0; i--) {
+            $('#commentbox').append($('<li>').attr('id',"list-item-" + i).html(response[i]))
+            
+        };
+        setTimeout(loadComments, 1000);
+    })
+
+}
+
+// var addNewComment = function () {
+//     var x=document.forms["newComment"]["newcomment"].value;
+//     console.log(x)
+//     return false
+// }
 $(function(){
     var mapOptions = {
         zoom: 16,
@@ -95,6 +113,15 @@ $(function(){
 			})(response[i]['name']);
 		}
 	});
+    loadComments()
+});
+$(function() {
+    $('#submitComment').click(function() {
+        var formdata = $('#new-comment-box').val();
+        console.log(formdata)
+        $.post('/comment', { 'message': formdata });
+        return false;
+    });
 });
 
 

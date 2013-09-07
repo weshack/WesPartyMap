@@ -20,7 +20,7 @@ body {
 	position: absolute;
 	left: 0;
 	top: 100px;
-	bottom: 70px;
+	bottom: 150px;
 	right: 0;
 	z-index: 1;
 }
@@ -28,12 +28,12 @@ body {
 #footer {
 	position: absolute;
 	bottom: 0;
-	left: 0;
-	width: 100%;
+	right: 0;
+	width: 70%;
 	height: 50px;
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.4) inset;
 	line-height: 50px;
-	padding: 10px;
+	/*padding: 10px;*/
 	font-size: 20px;
 	text-align: center;
 	z-index: 2;
@@ -64,4 +64,33 @@ body {
 	padding-top: 10px;
 	font-size: 20px;
 	text-decoration: underline;
+}
+
+#comments {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 30%;
+	height: 150px;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.4) inset;
+	line-height: 14px;
+	/*padding: 10px;*/
+	font-size: 14px;
+	text-align: left;
+	z-index: 2;
+}
+#commentbox {
+	-webkit-padding-start:0px;
+	width:100%;
+	position: absolute;
+	list-style-type: none;
+	bottom: 20px;
+	left: 4px;
+	right:4px;
+}
+#new-comment-box {
+	position: absolute;
+	bottom: 2px;
+	left: 2px;
+	right: 2px;
 }
