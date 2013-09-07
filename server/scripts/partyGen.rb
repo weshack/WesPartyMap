@@ -5,8 +5,9 @@ begin
 	while true
 		30.times do
 			curr = rand(parties.length)
-			Net::HTTP.get('wespartymap.com', "/checkin/1/#{parties[curr][0]}/#{parties[curr][1]}")
+			Net::HTTP.get('3be3.localtunnel.com', "/checkin/1/#{parties[curr][0]}/#{parties[curr][1]}")
 		end
+		puts "Sent 30 requests!"
 		sleep 5*60
 	end
 end	
