@@ -71,8 +71,6 @@ var getPoints = function(context, poly){
     return [xs,ys];
 }
 var drawInfo = function(ctx, pts){
-    $("#info-pane canvas").hide();
-    $("#info-pane .description").show();
     desc = ["great","slow"];
     progress = ["getting better", "dying down"];
     var perc = pts[1][0]/pointArray.length;
@@ -84,13 +82,12 @@ var drawInfo = function(ctx, pts){
 
     if (pts[1][0] > pts[1][1])
         progNum = 0;
-
+    $("#info-pane").removeClass('flip')
     $("#info-pane .description").html("This party is " + desc[descNum] + ", and it's " + progress[progNum] + "."
         + "  <a href='#'>See graph here</a>");
     $("#info-pane .description a").on('click', function(){
-        $("#info-pane canvas").show();
+        $("#info-pane").addClass('flip');
         drawScreen(ctx,pts);
-        $("#info-pane .description").hide();
     });
 }
 
@@ -164,7 +161,7 @@ var canvasApp = function (poly) {
 var loadComments = function () {
     $.getJSON("/comment").done(function(response){
         $("#commentbox").html('')
-        for (var i = response.length - 1; i >= 0; i--) {
+        for (var i = response.length - 2; i >= 0; i--) {
             $('#commentbox').append($('<li>').attr('id',"list-item-" + i).html(response[i]))
             $('#commentbox').scrollTop(10000);
         };
@@ -241,8 +238,7 @@ $(function(){
 				map: map
 			});
 			(function (name, poly){
-				google.maps.event.addListener(poly, 'click', function(){
-                                        
+				google.maps.event.addListener(poly, 'click', function(){                    
 					console.log(name)
 					$("#info-pane").css('left','')
 					setTimeout(function(){
@@ -251,6 +247,12 @@ $(function(){
                         canvasApp(poly);
                         setTimeout(function(){canvasApp(poly)}, 1000);
 					}, 1000);
+				});
+				google.maps.event.addListener(poly, 'mouseover', function(){
+					poly.setOptions({ fillColor: 'rgba(255,0,0,.5)'});
+				});
+				google.maps.event.addListener(poly, 'mouseout', function(){
+					poly.setOptions({ fillColor: 'rgba(255,0,0,0)'});
 				});
 			})(response[i]['name'], p);
 		}
