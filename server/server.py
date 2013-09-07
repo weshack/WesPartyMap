@@ -59,7 +59,7 @@ def deleteUser(userID):
 def getCheckIns():
 	return simplejson.dumps(get_all_checkins(database.db))
 
-recent_comments = ["comment","comment3","commentqwq"]
+recent_comments = []
 @app.route('/comment', methods=['GET','POST'])
 def comment():
 	global recent_comments
