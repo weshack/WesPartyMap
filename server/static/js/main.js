@@ -89,7 +89,7 @@ $(function(){
 					setTimeout(function(){
 						$("#info-pane").css('left', '80%')
 						$("#info-pane .name").html(name)
-                                                setTimeout(canvasApp, 1000);
+                        setTimeout(canvasApp, 1000);
 					}, 1000);
 				});
 			})(response[i]['name']);
