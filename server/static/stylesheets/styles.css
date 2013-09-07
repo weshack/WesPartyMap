@@ -139,7 +139,7 @@ body {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	width: 100%;
+	width: 50%;
 	height: 150px;
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.4) inset;
 	line-height: 14px;
@@ -160,7 +160,7 @@ body {
 	left: 4px;
 	right:4px;
 	height: 114px;
-	overflow-y:scroll;
+	overflow-y:hidden;
 }
 .new-item {
 	opacity:0;
@@ -169,39 +169,39 @@ body {
 }
 @-webkit-keyframes new-item-wkanimation {
   from {
-    opacity: 0;
+    opacity:0;
     transform: translateY(20px);
-    -webkit-transform: translateY(20px);
+    -webkit-transform: translateY(14px);
   }
  
   to {
-    opacity: 1;
+    opacity:1;
     transform : translateY(0);
     -webkit-transform: translateY(0px);
   }
 }
 @keyframes new-item-animation {
   from {
-    opacity: 0;
+    opacity:0;
     transform: translateY(20px);
     -webkit-transform: translateY(20px);
   }
  
   to {
-    opacity: 1;
+    opacity:1;
     transform : translateY(0);
     -webkit-transform: translateY(0px);
   }
 }
 .old-item {
-	-webkit-animation: new-item-wkanimation 0.5s linear forwards;
-	animation: new-item-animation 0.5s linear forwards;
+	-webkit-animation: old-item-wkanimation 0.5s linear forwards;
+	animation: old-item-animation 0.5s linear forwards;
 }
-@-webkit-keyframes new-item-wkanimation {
+@-webkit-keyframes old-item-wkanimation {
   from {
     
     transform: translateY(20px);
-    -webkit-transform: translateY(20px);
+    -webkit-transform: translateY(14px);
   }
  
   to {
@@ -210,7 +210,7 @@ body {
     -webkit-transform: translateY(0px);
   }
 }
-@keyframes new-item-animation {
+@keyframes old-item-animation {
   from {
     
     transform: translateY(20px);
