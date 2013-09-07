@@ -236,11 +236,13 @@ var checkPos = function(){
 	setTimeout(checkPos, 500);
 }
 
-// var addNewComment = function () {
-//     var x=document.forms["newComment"]["newcomment"].value;
-//     console.log(x)
-//     return false
-// }
+var numNewPts = function(pts){
+	console.log(pts.filter(function(el,ind,arr){
+		return ((new Date()) - (new Date(el.time))) < 1000*60*30
+	}).length)
+	console.log(pts.length)
+}
+
 $(function(){
     var mapOptions = {
         zoom: 16,
