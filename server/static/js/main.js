@@ -211,6 +211,31 @@ var refreshComments = function () {
     })
 }
 
+var checkPos = function(){
+	var center = map.getCenter();
+	var newLat = center.ob;
+	var newLong = center.pb;
+	var changed = false;
+	if (center.ob < 41.54356550447476) {
+		newLat = 41.54356550447476;
+		changed = true;
+	} else if (center.ob > 41.5614860146243) {
+		newLat = 41.5614860146243;
+		changed = true;
+	}
+	if (center.pb < -72.6740026473999) {
+		newLong = -72.6740026473999;
+		changed = true
+	} else if (center.pb > -72.6467514038086) {
+		newLong = -72.6467514038086;
+		changed = true;
+	}
+	if (changed){		
+		map.panTo(new google.maps.LatLng(newLat, newLong));
+	}
+	setTimeout(checkPos, 500);
+}
+
 // var addNewComment = function () {
 //     var x=document.forms["newComment"]["newcomment"].value;
 //     console.log(x)
@@ -222,15 +247,20 @@ $(function(){
         center: new google.maps.LatLng(41.555, -72.65957),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         maxZoom: 18,
-        minZoom: 14
+        minZoom: 14,
+        streetViewControl: false,
     };
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    checkPos();
     heatmap = new google.maps.visualization.HeatmapLayer();
     heatmap.setMap(map);
     heatmap.setOptions({
     	radius: 20,
     	maxIntensity: 20
     });
+    google.maps.event.addListener(map, 'click', function(e){
+    	console.log(e.latLng)
+    })
     loadPoints();
     $.getJSON("/static/json/polygons.json").done(function(response){
 		for (var i = 0; i < response.length; i++) {
@@ -245,7 +275,7 @@ $(function(){
 				map: map
 			});
 			(function (name, poly){
-				google.maps.event.addListener(poly, 'click', function(){                    
+				google.maps.event.addListener(poly, 'click', function(){ 
 					console.log(name)
 					$("#info-pane").css('left','')
 					setTimeout(function(){

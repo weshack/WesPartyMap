@@ -1,5 +1,10 @@
 body {
 	overflow: hidden;
+	font-family: 'Kite One', serif;
+}
+
+a {
+	color: #888;
 }
 
 #header {
@@ -73,6 +78,7 @@ body {
 	background-color: #fff;
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	opacity: 1;
+	padding: 5px;
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -106,6 +112,7 @@ body {
 #info-pane .back {
 	background-color: #fff;
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	padding: 5px;
 	z-index: 10;
 	position: absolute;
 	left: 0;
@@ -395,3 +402,15 @@ body {
     border: 0;
     padding: 0;
 }   
+
+#info-pane .back .name {
+	position: relative;
+	left: -5px;
+}
+
+#info-pane .return {
+	float: left;
+	margin: 5px 0px 0px 5px;
+	cursor: hand;
+	cursor: pointer;
+}
