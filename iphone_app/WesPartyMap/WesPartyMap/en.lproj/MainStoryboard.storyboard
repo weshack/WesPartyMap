@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4471.1" systemVersion="13A569" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A569" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,13 +15,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Partymaps.png" translatesAutoresizingMaskIntoConstraints="NO" id="GfR-2f-3gF">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
                                 </accessibility>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="235" translatesAutoresizingMaskIntoConstraints="NO" id="tZ3-Ke-Z6e">
-                                <rect key="frame" x="43" y="89" width="235" height="73"/>
                                 <accessibility key="accessibilityConfiguration" label=""/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="I49-Hu-kt6"/>
@@ -33,15 +31,22 @@ Your location will be sent anonymously when you move</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYq-eV-qRA">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="tZ3-Ke-Z6e" firstAttribute="leading" secondItem="lYq-eV-qRA" secondAttribute="leading" type="default" id="6ej-Na-No3"/>
+                            <constraint firstItem="lYq-eV-qRA" firstAttribute="trailing" secondItem="tZ3-Ke-Z6e" secondAttribute="trailing" type="default" id="7Cl-ea-9hv"/>
                             <constraint firstItem="GfR-2f-3gF" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="8uW-ng-b8n"/>
                             <constraint firstItem="GfR-2f-3gF" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="9zf-uD-8lp"/>
+                            <constraint firstAttribute="bottom" secondItem="lYq-eV-qRA" secondAttribute="bottom" constant="278" id="f7m-bo-oE2"/>
                             <constraint firstItem="tZ3-Ke-Z6e" firstAttribute="centerX" secondItem="GfR-2f-3gF" secondAttribute="centerX" type="default" id="fT7-Oc-UXu"/>
                             <constraint firstItem="GfR-2f-3gF" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="kYg-2S-aT9"/>
                             <constraint firstItem="GfR-2f-3gF" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="pxh-ZT-9MU"/>
                             <constraint firstItem="tZ3-Ke-Z6e" firstAttribute="top" secondItem="3" secondAttribute="top" constant="89" id="xEt-qZ-P3v"/>
+                            <constraint firstItem="lYq-eV-qRA" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="z6S-CB-3UX"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -52,6 +57,14 @@ Your location will be sent anonymously when you move</string>
     <resources>
         <image name="Partymaps.png" width="640" height="1136"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
