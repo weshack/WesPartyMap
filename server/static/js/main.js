@@ -82,11 +82,11 @@ var drawInfo = function(ctx, pts){
 
     if (pts[1][0] > pts[1][1])
         progNum = 0;
-
+    $("#info-pane").removeClass('flip')
     $("#info-pane .description").html("This party is " + desc[descNum] + ", and it's " + progress[progNum] + "."
         + "  <a href='#'>See graph here</a>");
     $("#info-pane .description a").on('click', function(){
-        $("#info-pane").toggleClass('flip');
+        $("#info-pane").addClass('flip');
         drawScreen(ctx,pts);
     });
 }
@@ -205,8 +205,7 @@ $(function(){
 				map: map
 			});
 			(function (name, poly){
-				google.maps.event.addListener(poly, 'click', function(){
-                                        
+				google.maps.event.addListener(poly, 'click', function(){                    
 					console.log(name)
 					$("#info-pane").css('left','')
 					setTimeout(function(){
@@ -215,6 +214,12 @@ $(function(){
                         canvasApp(poly);
                         setTimeout(function(){canvasApp(poly)}, 1000);
 					}, 1000);
+				});
+				google.maps.event.addListener(poly, 'mouseover', function(){
+					poly.setOptions({ fillColor: 'rgba(255,0,0,.5)'});
+				});
+				google.maps.event.addListener(poly, 'mouseout', function(){
+					poly.setOptions({ fillColor: 'rgba(255,0,0,0)'});
 				});
 			})(response[i]['name'], p);
 		}

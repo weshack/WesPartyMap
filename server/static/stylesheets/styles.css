@@ -49,9 +49,8 @@ body {
 	height: 300px;
 	width: 200px;
 	left: 110%;
-	background-color: #fff;
+	background-color: transparent;
 	z-index: 3;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	transition: left 1s ease-in;
 	-webkit-transition: left 1s ease-in;
 	-o-transition: left 1s ease-in;
@@ -71,6 +70,8 @@ body {
 }
 
 #info-pane .front {
+	background-color: #fff;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	opacity: 1;
 	position: absolute;
 	left: 0;
@@ -103,6 +104,8 @@ body {
 }
 
 #info-pane .back {
+	background-color: #fff;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	z-index: 10;
 	position: absolute;
 	left: 0;
