@@ -132,6 +132,23 @@ overflow:hidden;
 	color: #888;
 }
 
+#info-pane .exit{
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    cursor: hand;
+    z-index: 20;
+    opacity: .5;
+}
+
+#info-pane .exit:hover{
+    opacity: .7;
+}
+
+
 #info-pane {
 	position: absolute;
 	top: 200px;
@@ -227,8 +244,17 @@ overflow:hidden;
 	text-decoration: underline;
 }
 
-#info-pane .return:hover {
+#info-pane .return{ 
+    position: absolute;
+    height: 20px;
+    width: 20px;
     opacity: .5;
+    top: 5px;
+    left:2px;
+}
+
+#info-pane .return:hover {
+    opacity: .7;
 }
 
 #data-pane {

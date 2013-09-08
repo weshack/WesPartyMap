@@ -386,6 +386,11 @@ $(function(){
     $("#info-pane .return").on('click',function(){
         $("#info-pane").removeClass('flip');
     });
+
+    $("#info-pane .exit").on('click',function(){
+        $("#info-pane").css('left', '110%')
+    });
+
     $("#more-btn").click(function(){
         $("#more").toggleClass('active');
     });
