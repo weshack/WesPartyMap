@@ -68,6 +68,7 @@ var getPoints = function(poly){
         if (poly.containsLatLng(new google.maps.LatLng(pt.latitude, pt.longitude))){
         	var now = new Date();
         	var timeZoneOffset = now.getTimezoneOffset()
+        	now = new Date() + 1000*60*timeZoneOffset;
             var millisBefore = now - new Date(pt.time*1000);
             var minutesBefore = millisBefore / (1000*60) + timeZoneOffset;
             if (minutesBefore <= 110 && minutesBefore > 0) { // in case of weird time zone issues
@@ -288,8 +289,9 @@ var numNewPts = function(){
 	$("#recent").html(pointArray.filter(function(el){
 		var now = new Date();
         var timeZoneOffset = now.getTimezoneOffset()
+        now = new Date() + 1000*60*timeZoneOffset;
         var millisBefore = now - new Date(el.time*1000);
-        var minutesBefore = millisBefore / (1000*60) + timeZoneOffset;
+        var minutesBefore = millisBefore / (1000*60);
 		return minutesBefore < 30;
 	}).length)
 	setTimeout(numNewPts, 1000*60*5);
