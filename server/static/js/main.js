@@ -69,7 +69,7 @@ var getPoints = function(poly){
         	var now = new Date();
         	var timeZoneOffset = now.getTimezoneOffset()
             var millisBefore = now - new Date(pt.time*1000);
-            var minutesBefore = millisBefore / (1000*60) - timeZoneOffset;
+            var minutesBefore = millisBefore / (1000*60) + timeZoneOffset;
             if (minutesBefore <= 110 && minutesBefore > 0) { // in case of weird time zone issues
                 ys[Math.floor(minutesBefore/10)] += 1;
             }
@@ -289,7 +289,7 @@ var numNewPts = function(){
 		var now = new Date();
         var timeZoneOffset = now.getTimezoneOffset()
         var millisBefore = now - new Date(el.time*1000);
-        var minutesBefore = millisBefore / (1000*60) - timeZoneOffset;
+        var minutesBefore = millisBefore / (1000*60) + timeZoneOffset;
 		return minutesBefore < 30;
 	}).length)
 	setTimeout(numNewPts, 1000*60*5);
