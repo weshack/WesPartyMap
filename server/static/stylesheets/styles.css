@@ -46,11 +46,11 @@ a {
 #more{
     background-color: #2c4762;
     color:white;
-    top: 90%;
+    bottom: -500px;
     width: 60%;
     padding: 10px;
     position: absolute;
-    height:500px;
+    height: 500px;
     font-size: 15px;
     z-index: 2;
     text-align: left;
@@ -59,16 +59,16 @@ a {
     margin-left: 20%;
     border-radius: 10px;
     
-    -webkit-transition: top 1s ease-in;
-    -o-transition: top 1s ease-in;
-    -ms-transition: top 1s ease-in;
-    -moz-transition: top 1s ease-in;
+    -webkit-transition: bottom 1s ease-in;
+    -o-transition: bottom 1s ease-in;
+    -ms-transition: bottom 1s ease-in;
+    -moz-transition: bottom 1s ease-in;
 
 }
 
 
 #more.active {
-    top: 20%;
+    bottom: 0px;
 }
 
 #more-btn {
