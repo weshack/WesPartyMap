@@ -370,6 +370,7 @@ $(function(){
     	console.log(e.latLng)
     })
     $(document).one('ajaxStop',function(){
+    	console.log("HERE")
     	$.getJSON("/static/json/polygons.json").done(loadPolygons);
     });
     loadPoints();
