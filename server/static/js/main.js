@@ -67,7 +67,8 @@ var getPoints = function(poly){
         pt = pointArray[i]
         if (poly.containsLatLng(new google.maps.LatLng(pt.latitude, pt.longitude))){
             minBefore = Math.floor((new Date().getTime() - pt.time)/60000/10)*10
-            ys[minBefore/10] += 1; 
+            if (minBefore <= 110)
+                ys[minBefore/10] += 1; 
         }
     }
     return [xs,ys];
@@ -135,10 +136,10 @@ var drawScreen = function (context, pts) {
     context.fillStyle = "#ffffff";
     context.fillRect(0,0,200,230);
     var divs = 11;
-    var xi = 25, yi = 30;
+    var xi = 25, yi = 35;
     var gwidth = 165, gheight = 180; 
     
-    console.log(pts);
+    console.log(pts[1]);
     var ymax = Math.ceil(Math.max.apply(null, pts[1])/12)*12;
     if (ymax == 0)
         ymax = 12;
@@ -153,6 +154,12 @@ var drawScreen = function (context, pts) {
     context.font = "10px Arial";
     
     xlabs = ["-2hr", "-1.5hr", "-1hr", "-.5r", "now"];
+    context.fillText("NOW", xi + gwidth - 15, yi + gheight + 15);
+    context.fillText(" 1 ", xi + .5*gwidth - 13, yi + gheight + 15);
+    context.fillText(".5", xi + .75*gwidth - 9, yi + gheight + 15);
+    context.fillText("1.5", xi + .25*gwidth - 18, yi + gheight + 15);
+    context.fillText("Hours before now", xi + .5*gwidth - 43, yi + gheight + 30);
+    
 
 
     context.strokeStyle = "#aaaaaa";

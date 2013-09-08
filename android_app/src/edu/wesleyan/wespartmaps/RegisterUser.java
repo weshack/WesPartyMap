@@ -3,6 +3,8 @@ package edu.wesleyan.wespartmaps;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -17,11 +19,12 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 
-class RegisterUser extends AsyncTask<Void, String, String> {
+class RegisterUser extends AsyncTask<String, String, String> {
 	Activity mActivity;
 	
 	RegisterUser(Activity a){
@@ -30,12 +33,28 @@ class RegisterUser extends AsyncTask<Void, String, String> {
 	}
 	
 	@Override
-    protected String doInBackground(Void... args) {
+    protected String doInBackground(String... args) {
+			String address = args[0];
+			Log.i("Address: ", address);
+			Geocoder geocoder = new Geocoder(mActivity, Locale.getDefault());
+			List<Address> addresses = null;
+			double lat = 0, longitude = 0;
+			try {
+				addresses = geocoder.getFromLocationName(address, 1);
+				lat = addresses.get(0).getLatitude();
+				longitude = addresses.get(0).getLongitude();
+			} catch (Exception e) {
+				// we will just ignore it and reset lat,longitude
+				Log.e("Geocode:", "Error in geocoding...");
+				lat = longitude = 0;
+			}
+			
+			
         	HttpClient httpclient = new DefaultHttpClient();
             HttpResponse response;
             String responseString = null;
             try {
-                response = httpclient.execute(new HttpGet("http://wespartymap.com/user/add/default/0/0"));
+                response = httpclient.execute(new HttpGet("http://wespartymap.com/user/add/default1/"+lat+"/"+longitude));
                 StatusLine statusLine = response.getStatusLine();
                 if(statusLine.getStatusCode() == HttpStatus.SC_OK){
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -67,9 +86,8 @@ class RegisterUser extends AsyncTask<Void, String, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
-		TextView textView = (TextView)mActivity.findViewById(R.id.text);
-    	textView.setText(R.string.main);
-		Intent mServiceIntent = new Intent(mActivity, LocationCollector.class);
-    	mActivity.startService(mServiceIntent);
+		Log.i("PostExecute", "Here");
+		Intent mServiceIntent = new Intent(mActivity, MainActivity.class);
+    	mActivity.startActivity(mServiceIntent);
 	}
 }

@@ -4,5 +4,8 @@
     <string name="app_name">WesPartyMap</string>
     <string name="main">Service started.  Your location will be sent by GPS every 30 minutes.</string>
     <string name="backgroundDescription">WesPartyMap Background Image</string>
-
+    <string name="loginPrompt">Please enter your address, so we can filter it out from your GPS uploads.</string>
+    <string name="addressHint">Wesleyan Address</string>
+    <string name="submit">Submit</string>
+    
 </resources>
