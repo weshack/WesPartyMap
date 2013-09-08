@@ -21,6 +21,9 @@
 		22EE3E0017DA92EB0089E120 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EE3DFF17DA92EB0089E120 /* ViewController.m */; };
 		22EE3E0717DA99FE0089E120 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EE3E0617DA99FE0089E120 /* CoreLocation.framework */; };
 		22EE3E0917DAAA650089E120 /* Partymaps.png in Resources */ = {isa = PBXBuildFile; fileRef = 22EE3E0817DAAA650089E120 /* Partymaps.png */; };
+		22FE70BD17DCBBF700740203 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FE70BC17DCBBF700740203 /* Default.png */; };
+		22FE70BF17DCBE4600740203 /* partyicon52.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FE70BE17DCBE4600740203 /* partyicon52.png */; };
+		22FE70C117DCBE7900740203 /* partyicon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FE70C017DCBE7900740203 /* partyicon114.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		22EE3DFF17DA92EB0089E120 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		22EE3E0617DA99FE0089E120 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		22EE3E0817DAAA650089E120 /* Partymaps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Partymaps.png; sourceTree = "<group>"; };
+		22FE70BC17DCBBF700740203 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		22FE70BE17DCBE4600740203 /* partyicon52.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = partyicon52.png; sourceTree = "<group>"; };
+		22FE70C017DCBE7900740203 /* partyicon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = partyicon114.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 		22EE3DD717DA92EA0089E120 = {
 			isa = PBXGroup;
 			children = (
+				22FE70C017DCBE7900740203 /* partyicon114.png */,
+				22FE70BE17DCBE4600740203 /* partyicon52.png */,
+				22FE70BC17DCBBF700740203 /* Default.png */,
 				22EE3E0617DA99FE0089E120 /* CoreLocation.framework */,
 				22EE3DE917DA92EB0089E120 /* WesPartyMap */,
 				22EE3DE217DA92EA0089E120 /* Frameworks */,
@@ -175,6 +184,9 @@
 				22EE3DFD17DA92EB0089E120 /* MainStoryboard.storyboard in Resources */,
 				22EE3E0917DAAA650089E120 /* Partymaps.png in Resources */,
 				226868C017DC05EA00786DAA /* user.txt in Resources */,
+				22FE70BD17DCBBF700740203 /* Default.png in Resources */,
+				22FE70BF17DCBE4600740203 /* partyicon52.png in Resources */,
+				22FE70C117DCBE7900740203 /* partyicon114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
