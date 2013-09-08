@@ -108,7 +108,7 @@ var drawInfo = function(ctx, pts){
         else 
             messNum = 1;
     else 
-        if (perc > .2)
+        if (perc > .05)
             messNum = 2;
         else
             messNum = 3;
