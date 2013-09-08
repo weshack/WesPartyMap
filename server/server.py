@@ -19,7 +19,7 @@ def checkIn(user, latitude, longitude):
 	if metersBetween([latitude, longitude], get_home(database.db, user)) >= 100:
 		now = datetime.utcnow()
 		time = mktime(now.timetuple())
-		print(str(user) + str(latitude) + str(longitude) + str(time))
+		#print(str(user) + str(latitude) + str(longitude) + str(time))
 		check_in(database.db, user, latitude, longitude, time)
 		return simplejson.dumps({'message': 'OK'})
 	return simplejson.dumps({'message': 'at home'})
@@ -48,7 +48,9 @@ def metersBetween(coord1, coord2):
 @app.route('/user/add/<name>/<homeLat>/<homeLong>')
 def addUser(name, homeLat, homeLong):
 	user = {'name':name,'homeLat':homeLat,'homeLong':homeLong}
-	return simplejson.dumps({'uid': str(add_user(database.db, user))})
+	newuserid = add_user(database.db, user)
+	print "adding new user with id " + str(newuserid)
+	return simplejson.dumps({'uid': str(newuserid)})
 	
 
 @app.route('/user/delete/<userID>')
@@ -64,12 +66,12 @@ recent_comments = ["Welcome to WesPartyMap. Type below to add comments"," "," ",
 def comment():
 	global recent_comments
 	if request.method == 'POST':
-		print(request.form['message'])
+		#print(request.form['message'])
 		recent_comments = [ x for x in ([request.form['message']] + recent_comments[:8]) ]
 		if request.form['message'] == 'admin_clear': recent_comments = ["Welcome to WesPartyMap. Type below to add comments"," "," "," "," "," "," "," "," ",]
 		return ''
 	else:
-		print recent_comments
+		#print recent_comments
 		return json.dumps(recent_comments)
 
 if __name__ == "__main__":
