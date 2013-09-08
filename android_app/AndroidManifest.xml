@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.wesleyan.wespartmaps"
+    package="edu.wesleyan.wespartymap"
     android:versionCode="1"
     android:versionName="1.0" >
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,15 +11,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/partyicon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="edu.wesleyan.wespartmaps.MainActivity"
+            android:name="edu.wesleyan.wespartymap.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="edu.wesleyan.wespartmaps.LoginActivity"
+            android:name="edu.wesleyan.wespartymap.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".LocationCollector"
+            android:name="edu.wesleyan.wespartymap.LocationCollector"
             android:exported="false" />
     </application>
 
