@@ -372,8 +372,10 @@ $(function(){
     	console.log(e.latLng)
     })
     loadPoints();
-    $(document).one('ajaxStop',function(){$.getJSON("/static/json/polygons.json").done(loadPolygons)});
-    $(document).one('ajaxStop',bestPlace);
+    $(document).one('ajaxStop',function(){
+    	$.getJSON("/static/json/polygons.json").done(loadPolygons);
+    	bestPlace();
+    });
     loadComments()
     $('#submitComment').click(function() {
         var formdata = $('#new-comment-box').val();
@@ -394,7 +396,8 @@ $(function(){
     $("#more-btn").click(function(){
         $("#more").toggleClass('active');
     });
-    if (navigator.userAgent.match(/mobile/i).length > 0){  // we're on an android device
+    var n = navigator.userAgent.match(/mobile/i);
+    if ( n != null && n.length > 0){  // we're on an android device
     	$("#linkPromo").hide();
     	$("#more").hide();
     }
