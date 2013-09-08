@@ -199,7 +199,7 @@ var canvasApp = function (poly) {
 var loadComments = function () {
     $.getJSON("/comment").done(function(response){
         $("#commentbox").html('')
-        console.log("response" + response)
+        //console.log("response" + response)
         if (response){
             for (var i = 8; i >= 0; i--) {
                 $('#commentbox').append($('<li>').attr('id',"list-item-" + i).html(response[i]))
