@@ -392,5 +392,8 @@ $(function(){
     if (navigator.userAgent.match(/android/i)){  // we're on an android device
     	$("#linkPromo").hide();
     	$("#more").hide();
+    	$("linkLabel").hide();
+		$("iphoneLink").hide();
+		$("androidLik").hide();
     }
 });
