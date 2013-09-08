@@ -36,7 +36,7 @@ public final class R {
         public static final int login=0x7f090000;
         public static final int loginField=0x7f090001;
         public static final int main=0x7f090004;
-        public static final int text=0x7f090005;
+        public static final int webview=0x7f090005;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
