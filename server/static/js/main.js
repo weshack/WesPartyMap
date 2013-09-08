@@ -369,7 +369,7 @@ $(function(){
     google.maps.event.addListener(map, 'click', function(e){
     	console.log(e.latLng)
     })
-    $(document).on('ajaxStop',function(){
+    $(document).one('ajaxStop',function(){
     	$.getJSON("/static/json/polygons.json").done(loadPolygons);
     });
     loadPoints();
