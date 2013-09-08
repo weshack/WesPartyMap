@@ -386,14 +386,16 @@ $(function(){
     $("#info-pane .return").on('click',function(){
         $("#info-pane").removeClass('flip');
     });
+
+    $("#info-pane .exit").on('click',function(){
+        $("#info-pane").css('left', '110%')
+    });
+
     $("#more-btn").click(function(){
         $("#more").toggleClass('active');
     });
-    if (navigator.userAgent.match(/android/i)){  // we're on an android device
+    if (navigator.userAgent.match(/mobile/i).length > 0){  // we're on an android device
     	$("#linkPromo").hide();
     	$("#more").hide();
-    	$("linkLabel").hide();
-		$("iphoneLink").hide();
-		$("androidLik").hide();
     }
 });
