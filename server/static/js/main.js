@@ -103,7 +103,7 @@ var drawInfo = function(ctx, pts){
         console.log("Here");
     }else{
     if (pts[1][0] > pts[1][1])
-        if (perc > .2)
+        if (perc > .05)
             messNum = 0;
         else 
             messNum = 1;
