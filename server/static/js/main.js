@@ -56,19 +56,23 @@ var loadPoints = function(){
     	heatmap.setData(new google.maps.MVCArray(ret));
     	numNewPts();
 	});
+	console.log("Points loaded.")
 };
 
 var getPoints = function(poly){
     
-    xs = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
-    ys = [0,0,0,0,0,0,0,0,0,0,0,0]
-
+    var xs = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
+    var ys = [0,0,0,0,0,0,0,0,0,0,0,0]
     for (var i = 0; i < pointArray.length; i++){
-        pt = pointArray[i]
+        var pt = pointArray[i]
         if (poly.containsLatLng(new google.maps.LatLng(pt.latitude, pt.longitude))){
-            minBefore = Math.floor((new Date().getTime() - pt.time)/60000/10)*10
-            if (minBefore <= 110)
-                ys[minBefore/10] += 1; 
+        	var now = new Date();
+        	var timeZoneOffset = now.getTimezoneOffset()
+            var millisBefore = now - new Date(pt.time*1000);
+            var minutesBefore = millisBefore / (1000*60) + timeZoneOffset;
+            if (minutesBefore <= 110 && minutesBefore > 0) { // in case of weird time zone issues
+                ys[Math.floor(minutesBefore/10)] += 1;
+            }
         }
     }
     return [xs,ys];
@@ -281,8 +285,12 @@ var checkPos = function(){
 }
 
 var numNewPts = function(){
-	$("#recent").html(pointArray.filter(function(el,ind,arr){
-		return ((new Date()) - (new Date(el.time))) < 1000*60*30
+	$("#recent").html(pointArray.filter(function(el){
+		var now = new Date();
+        var timeZoneOffset = now.getTimezoneOffset()
+        var millisBefore = now - new Date(el.time*1000);
+        var minutesBefore = millisBefore / (1000*60) + timeZoneOffset;
+		return minutesBefore < 30;
 	}).length)
 	setTimeout(numNewPts, 1000*60*5);
 }
