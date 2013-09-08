@@ -26,16 +26,38 @@ a {
 #title{
 	padding-left: 50px;
 	position: absolute;
-	bottom: 2px;
+	bottom: 4px;
 }
 #linkPromo{
-	position: absolute;
-	bottom: 2px;
+	
+	bottom: 11px;
 	right: 5px;
 	font-weight: 100;
 	font-size: 18px;
 }
+#linkLabel{
+	position: absolute;
+	right:200px;
+	bottom:12px;
+	width:auto;
+}
+#iphoneLink{
+position:absolute;
+bottom:0px;
+right:90px;
+z-index:-1;
+height:62px;
+overflow:hidden;
+}
+#androidLink{
+position:absolute;
+bottom:0px;
+right:-10px;
+z-index:-1;
+height:62px;
+overflow:hidden;
 
+}
 #map-canvas {
 	position: absolute;
 	left: 0;
@@ -184,14 +206,14 @@ a {
 	font-size: 14px;
 	text-align: left;
 	z-index: 2;
-	background-color: #c8e1fa;
+	background-color: #EDF6FF;
 	/*overflow:scroll;*/
 }
 #commentbox {
 	-webkit-padding-start:0px;
 	width:100%;
 
-	font: 12px 'Helvetica Neue';
+	font: 12px 'Roboto';
 	position: absolute;
 	list-style-type: none;
 	bottom: 25px;
@@ -201,43 +223,54 @@ a {
 	overflow-y:hidden;
 }
 #data-pane{
-	background-color: #c8e1fa;
+	background-color: #EDF6FF;
 }
 #list-item-0{
 	position:absolute;
 	bottom:0px;
+	height:14px;
 }
 #list-item-1{
 	position:absolute;
 	bottom:14px;
+	height:14px;
 }
 #list-item-2{
 	position:absolute;
 	bottom:28px;
+	height:14px;
+
 }
 #list-item-3{
 	position:absolute;
 	bottom:42px;
+	height:14px;
+
 }
 #list-item-4{
 	position:absolute;
 	bottom:56px;
+	height:14px;
 }
 #list-item-5{
 	position:absolute;
 	bottom:70px;
+	height:14px;
 }
 #list-item-6{
 	position:absolute;
 	bottom:84px;
+	height:14px;
 }
 #list-item-7{
 	position:absolute;
 	bottom:98px;
+	height:14px;
 }
 #list-item-8{
 	position:absolute;
 	bottom:112px;
+	height:14px;
 }
 
 .new-item {
@@ -338,7 +371,7 @@ a {
     width: 74%;
     height: 20px;
     bottom: 0px;
-    left: 0px;
+    left: 2px;
     right:0px;
     z-index: 0;
     padding-top: 8px;
@@ -346,7 +379,7 @@ a {
     padding-left:5px;
     padding-right: 19px;
     float: left;   
-    font: 15px 'Helvetica Neue';
+    font: 15px 'Roboto';
     border: 0;
     background: #eee;
     border-radius: 3px 0 0 3px;     
@@ -389,7 +422,7 @@ a {
     cursor: pointer;
     height: 36px;
     width: 25%;
-    font:  15px/40px 'Helvetica Neue';
+    font:  15px/40px 'Roboto';
     color: #fff;
     text-transform: uppercase;
     background: #d83c3c;

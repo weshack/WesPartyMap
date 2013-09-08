@@ -12,9 +12,10 @@
   <body>
     <div id="header" color="#fff">
       <div id="title">WES PARTY MAP</div>
-      <div id="linkPromo">Get the Apps:
-        <input type="button" value="iPhone app" onclick="window.open('http://www.google.com/')" />
-        <input type="button" value="Android app" onclick="window.open('http://www.google.com/')" />
+      <div id="linkPromo">
+        <div id="linkLabel">Get the Apps:</div>
+        <div id="iphoneLink" value="iPhone app" onclick="window.open('http://www.google.com/')" ><img src = "/static/images/apple-icon.png"></div>
+        <div id="androidLink" value="Android app" onclick="window.open('http://www.google.com/')" ><img src = "/static/images/android-icon.png"></div>
       </div>
     </div>
     <div id="map-canvas"></div>
@@ -32,7 +33,7 @@
     <div id="comments">
       <ul id="commentbox"></ul>
       <form name="newComment" action="" class=form-wrapper cf>
-        <input type="text" id= "new-comment-box" name="newcomment" placeholder="new comment">
+        <input type="text" maxlength="130" id= "new-comment-box" name="newcomment" placeholder="new comment">
         <button type="submit" name="submit" class="button" id="submitComment" value="Send" >Send</button>
       </form>
     </div>

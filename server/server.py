@@ -66,13 +66,25 @@ recent_comments = ["Welcome to WesPartyMap. Type below to add comments"," "," ",
 def comment():
 	global recent_comments
 	if request.method == 'POST':
-		#print(request.form['message'])
-		recent_comments = [ x for x in ([request.form['message']] + recent_comments[:8]) ]
-		if request.form['message'] == 'admin_clear': recent_comments = ["Welcome to WesPartyMap. Type below to add comments"," "," "," "," "," "," "," "," ",]
+
+		comment = str(request.form['message'])
+		if comment.startswith("***admin"):
+			#admin codes
+			if comment == '***admin.clear': recent_comments = ["Welcome to WesPartyMap. Type below to add comments"," "," "," "," "," "," "," "," ",]
+			if comment == '***admin.startsample': dataEmulator()
+			return ''
+		recent_comments = [ x for x in ([comment] + recent_comments[:8]) ]
+		
+		
 		return ''
 	else:
 		#print recent_comments
 		return json.dumps(recent_comments)
+
+
+def dataEmulator():
+	print "Beginning data emulation"
+
 
 if __name__ == "__main__":
     app.secret_key = 'gbn98423jieu394jrfk9je92hk'
