@@ -1,4 +1,4 @@
-package edu.wesleyan.wespartmaps;
+package edu.wesleyan.wespartymap;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -22,20 +22,17 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
-import android.util.Log;
 
 class RegisterUser extends AsyncTask<String, String, String> {
 	Activity mActivity;
 	
 	RegisterUser(Activity a){
-		Log.i("RegisterUser", "Instantiated");
 		mActivity = a;
 	}
 	
 	@Override
     protected String doInBackground(String... args) {
 			String address = args[0];
-			Log.i("Address: ", address);
 			Geocoder geocoder = new Geocoder(mActivity, Locale.getDefault());
 			List<Address> addresses = null;
 			double lat = 0, longitude = 0;
@@ -45,7 +42,6 @@ class RegisterUser extends AsyncTask<String, String, String> {
 				longitude = addresses.get(0).getLongitude();
 			} catch (Exception e) {
 				// we will just ignore it and reset lat,longitude
-				Log.e("Geocode:", "Error in geocoding...");
 				lat = longitude = 0;
 			}
 			
@@ -61,7 +57,6 @@ class RegisterUser extends AsyncTask<String, String, String> {
                     response.getEntity().writeTo(out);
                     out.close();
                     responseString = out.toString();
-                    Log.i("Response String:", responseString);
                     JSONObject jObject = new JSONObject(responseString);
                     String uid = jObject.getString("uid");
                     FileOutputStream outputStream = mActivity.openFileOutput("userid.info", Context.MODE_PRIVATE);
@@ -86,7 +81,6 @@ class RegisterUser extends AsyncTask<String, String, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
-		Log.i("PostExecute", "Here");
 		Intent mServiceIntent = new Intent(mActivity, MainActivity.class);
     	mActivity.startActivity(mServiceIntent);
 	}
