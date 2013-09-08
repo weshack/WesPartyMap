@@ -56,7 +56,7 @@ var loadPoints = function(){
     	heatmap.setData(new google.maps.MVCArray(ret));
     	numNewPts();
 	});
-	console.log("Points loaded.")
+	$(document).trigger('points-loaded');
 };
 
 var getPoints = function(poly){
@@ -347,6 +347,7 @@ var loadPolygons = function(response){
 			});
 		})(response[i]['name'], p);
 	}
+	bestPlace();
 }
 
 $(function(){
@@ -370,9 +371,8 @@ $(function(){
     	console.log(e.latLng)
     })
     loadPoints();
-    $(document).one('ajaxStop',function(){
+    $(document).one('points-loaded',function(){
     	$.getJSON("/static/json/polygons.json").done(loadPolygons);
-    	bestPlace();
     });
     loadComments()
     $('#submitComment').click(function() {
