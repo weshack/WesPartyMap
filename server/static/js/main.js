@@ -370,10 +370,10 @@ $(function(){
     google.maps.event.addListener(map, 'click', function(e){
     	console.log(e.latLng)
     })
-    loadPoints();
     $(document).one('points-loaded',function(){
     	$.getJSON("/static/json/polygons.json").done(loadPolygons);
     });
+    loadPoints();
     loadComments()
     $('#submitComment').click(function() {
         var formdata = $('#new-comment-box').val();
