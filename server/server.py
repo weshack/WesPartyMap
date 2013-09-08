@@ -15,7 +15,7 @@ def index():
 
 @app.route('/checkin/<user>/<latitude>/<longitude>')
 def checkIn(user, latitude, longitude):
-	#purgeCheckIns()
+	purgeCheckIns()
 	if metersBetween([latitude, longitude], get_home(database.db, user)) >= 100:
 		now = datetime.utcnow()
 		time = mktime(now.timetuple())
