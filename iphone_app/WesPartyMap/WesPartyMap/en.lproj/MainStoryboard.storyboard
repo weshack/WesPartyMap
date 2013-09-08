@@ -11,7 +11,7 @@
             <objects>
                 <viewController title="myviewcontroller" id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Partymaps.png" translatesAutoresizingMaskIntoConstraints="NO" id="GfR-2f-3gF">
@@ -51,23 +51,46 @@ Your location will be sent anonymously when you move</string>
                                     <action selector="addUser:" destination="2" eventType="touchUpInside" id="JjV-oK-9Em"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Enter your home address so we can filter it from when you're out partying" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="216" translatesAutoresizingMaskIntoConstraints="NO" id="TdO-Nx-Wvo" userLabel="addressAsk">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="N1N-dd-k0g"/>
+                                    <constraint firstAttribute="width" constant="216" id="b7v-GK-b66"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No identifying information is stored, and all GPS data is deleted after 2 hours" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="216" translatesAutoresizingMaskIntoConstraints="NO" id="qOQ-r1-tJA" userLabel="privacyLabel">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="df0-wg-OGr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ffF-9V-TPp" firstAttribute="centerX" secondItem="tZ3-Ke-Z6e" secondAttribute="centerX" type="default" id="3gF-Ys-WZa"/>
+                            <constraint firstItem="qOQ-r1-tJA" firstAttribute="centerX" secondItem="GfR-2f-3gF" secondAttribute="centerX" type="default" id="83U-Ks-UeL"/>
+                            <constraint firstItem="qOQ-r1-tJA" firstAttribute="trailing" secondItem="TdO-Nx-Wvo" secondAttribute="trailing" type="default" id="DKH-KA-MM2"/>
+                            <constraint firstItem="TdO-Nx-Wvo" firstAttribute="top" secondItem="3" secondAttribute="top" constant="11" id="DTR-Na-qUf"/>
                             <constraint firstItem="BKl-Zh-z7C" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="89" id="GUL-Wv-Bg3"/>
-                            <constraint firstItem="ffF-9V-TPp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="89" id="GUk-jA-4vC"/>
                             <constraint firstItem="GfR-2f-3gF" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="Ugz-9J-SZr"/>
-                            <constraint firstItem="GfR-2f-3gF" firstAttribute="centerX" secondItem="tZ3-Ke-Z6e" secondAttribute="centerX" type="default" id="ZvH-cm-mbm"/>
+                            <constraint firstItem="qOQ-r1-tJA" firstAttribute="leading" secondItem="TdO-Nx-Wvo" secondAttribute="leading" type="default" id="aDP-ia-cmO"/>
+                            <constraint firstItem="qOQ-r1-tJA" firstAttribute="top" secondItem="3" secondAttribute="top" constant="183" id="b99-a2-RNB"/>
                             <constraint firstItem="GfR-2f-3gF" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bq5-Nv-Rdz"/>
-                            <constraint firstItem="ffF-9V-TPp" firstAttribute="top" secondItem="tZ3-Ke-Z6e" secondAttribute="top" type="default" id="h8G-w1-wjP"/>
+                            <constraint firstItem="BKl-Zh-z7C" firstAttribute="top" secondItem="3" secondAttribute="top" constant="140" id="fbn-De-Rl7"/>
                             <constraint firstItem="GfR-2f-3gF" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="kYg-2S-aT9"/>
                             <constraint firstItem="GfR-2f-3gF" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="pxh-ZT-9MU"/>
-                            <constraint firstItem="BKl-Zh-z7C" firstAttribute="top" secondItem="3" secondAttribute="top" constant="140" id="vUV-9p-7N1"/>
+                            <constraint firstItem="ffF-9V-TPp" firstAttribute="top" secondItem="TdO-Nx-Wvo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qJE-JF-r6B"/>
+                            <constraint firstItem="TdO-Nx-Wvo" firstAttribute="centerX" secondItem="ffF-9V-TPp" secondAttribute="centerX" type="default" id="v2Z-rd-3Ta"/>
+                            <constraint firstItem="tZ3-Ke-Z6e" firstAttribute="top" secondItem="TdO-Nx-Wvo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="zJF-x6-gUc"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="address" destination="ffF-9V-TPp" id="QmF-KH-iQs"/>
+                        <outlet property="addressAsk" destination="TdO-Nx-Wvo" id="w5C-0G-Hxz"/>
                         <outlet property="addressBox" destination="ffF-9V-TPp" id="jHg-Uo-sM7"/>
                         <outlet property="serviceStartLabel" destination="tZ3-Ke-Z6e" id="cDQ-40-cJG"/>
                         <outlet property="submitbox" destination="BKl-Zh-z7C" id="fdJ-na-gsx"/>
@@ -80,9 +103,25 @@ Your location will be sent anonymously when you move</string>
     <resources>
         <image name="Partymaps.png" width="640" height="1136"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addUser:"/>
+                <relationship kind="outlet" name="address" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addressAsk" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="addressBox" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serviceStartLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="submitbox" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

@@ -16,6 +16,7 @@
 {
     IBOutlet UILabel *serviceStartLabel;
     IBOutlet UITextField *addressBox;
+    IBOutlet UILabel *addressAsk;
     IBOutlet UIButton *submitbox;
     NSMutableData *responseData;
     NSString *addressCollected;
@@ -44,6 +45,7 @@
     [writeString writeToFile:file atomically:YES encoding:NSUTF8StringEncoding error:nil];
     NSString *string = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
     NSLog(string);
+    [addressAsk setHidden:true];
     [serviceStartLabel setHidden:false];
     [addressBox setHidden:true];
     [submitbox setHidden:true];
@@ -66,6 +68,7 @@
                          ];
         
         user = [data objectAtIndex:1];
+        [addressAsk setHidden:true];
         [serviceStartLabel setHidden:false];
         NSLog(address.text);
         [addressBox setHidden:true];
