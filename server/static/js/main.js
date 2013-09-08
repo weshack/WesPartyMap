@@ -67,9 +67,8 @@ var getPoints = function(poly){
         var pt = pointArray[i]
         if (poly.containsLatLng(new google.maps.LatLng(pt.latitude, pt.longitude))){
         	var now = new Date();
-        	var timeZoneOffset = now.getTimezoneOffset()
             var millisBefore = now - new Date(pt.time*1000);
-            var minutesBefore = millisBefore / (1000*60) + timeZoneOffset;
+            var minutesBefore = millisBefore / (1000*60);
             if (minutesBefore <= 110 && minutesBefore > 0) { // in case of weird time zone issues
                 ys[Math.floor(minutesBefore/10)] += 1;
             }
@@ -287,9 +286,8 @@ var checkPos = function(){
 var numNewPts = function(){
 	$("#recent").html(pointArray.filter(function(el){
 		var now = new Date();
-        var timeZoneOffset = now.getTimezoneOffset()
         var millisBefore = now - new Date(el.time*1000);
-        var minutesBefore = millisBefore / (1000*60) + timeZoneOffset;
+        var minutesBefore = millisBefore / (1000*60);
 		return minutesBefore < 30;
 	}).length)
 	setTimeout(numNewPts, 1000*60*5);
@@ -372,8 +370,10 @@ $(function(){
     	console.log(e.latLng)
     })
     loadPoints();
-    $(document).one('ajaxStop',function(){$.getJSON("/static/json/polygons.json").done(loadPolygons)});
-    $(document).one('ajaxStop',bestPlace);
+    $(document).one('ajaxStop',function(){
+    	$.getJSON("/static/json/polygons.json").done(loadPolygons);
+    	bestPlace();
+    });
     loadComments()
     $('#submitComment').click(function() {
         var formdata = $('#new-comment-box').val();
@@ -394,7 +394,8 @@ $(function(){
     $("#more-btn").click(function(){
         $("#more").toggleClass('active');
     });
-    if (navigator.userAgent.match(/mobile/i).length > 0){  // we're on an android device
+    var n = navigator.userAgent.match(/mobile/i);
+    if ( n != null && n.length > 0){  // we're on an android device
     	$("#linkPromo").hide();
     	$("#more").hide();
     }
