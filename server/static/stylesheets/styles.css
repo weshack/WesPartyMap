@@ -145,15 +145,23 @@ a {
 
 #info-pane .return:hover {
     opacity: .5;
-
 }
 
+#data-pane {
+	padding: 10px;
+	position: absolute;
+	bottom: 0;
+	height: 130px;
+	left: 50%;
+	width: 50%;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.4) inset;
+}
 
 #comments {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	width: 100%;
+	width: 50%;
 	height: 150px;
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.4) inset;
 	line-height: 14px;
