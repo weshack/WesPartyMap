@@ -36,11 +36,58 @@ a {
 	font-size: 18px;
 }
 #linkLabel{
+        
 	position: absolute;
 	right:200px;
 	bottom:12px;
 	width:auto;
 }
+
+#more{
+    background-color: #2c4762;
+    color:white;
+    bottom: -500px;
+    width: 60%;
+    padding: 10px;
+    position: absolute;
+    height: 500px;
+    font-size: 15px;
+    z-index: 2;
+    text-align: left;
+    display:block;
+    margin-right: 20%;
+    margin-left: 20%;
+    border-radius: 10px;
+    
+    -webkit-transition: bottom 1s ease-in;
+    -o-transition: bottom 1s ease-in;
+    -ms-transition: bottom 1s ease-in;
+    -moz-transition: bottom 1s ease-in;
+
+}
+
+
+#more.active {
+    bottom: 0px;
+}
+
+#more-btn {
+    position: absolute;
+    display: block;
+    margin-left: 48%;
+    margin-right: 48%;
+    height: 30px;
+    width: 30px;
+    z-index: 4;
+    opacity:.2;
+    cursor: pointer;
+    bottom: 150px;
+}
+
+#more-btn:hover{
+    opacity:.4;
+}
+
 #iphoneLink{
 position:absolute;
 bottom:0px;
@@ -92,7 +139,7 @@ overflow:hidden;
 	width: 200px;
 	left: 110%;
 	background-color: transparent;
-	z-index: 3;
+	z-index: 4;
 	text-align: justify;
 	transition: left 1s ease-in;
 	-webkit-transition: left 1s ease-in;
@@ -191,6 +238,7 @@ overflow:hidden;
 	height: 130px;
 	left: 50%;
 	width: 50%;
+        z-index: 3;
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.4) inset;
 }
 
@@ -205,7 +253,7 @@ overflow:hidden;
 	/*padding: 10px;*/
 	font-size: 14px;
 	text-align: left;
-	z-index: 2;
+	z-index: 3;
 	background-color: #EDF6FF;
 	/*overflow:scroll;*/
 }
