@@ -419,7 +419,7 @@ overflow:hidden;
     font: 15px 'Roboto';
     border: 0;
     background: #eee;
-    border-radius: 3px 0 0 3px;     
+    border-radius: 3px 0 0 3px;    
 }
 
 .form-wrapper input:focus {
