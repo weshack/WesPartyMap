@@ -68,7 +68,7 @@ var getPoints = function(poly){
         if (poly.containsLatLng(new google.maps.LatLng(pt.latitude, pt.longitude))){
         	var now = new Date();
         	var timeZoneOffset = now.getTimezoneOffset()
-        	now = newDate(now.getTime() + 1000*60*timeZoneOffset);
+        	now = new Date(now.getTime() + 1000*60*timeZoneOffset);
             var millisBefore = now - new Date(pt.time*1000);
             var minutesBefore = millisBefore / (1000*60);
             if (minutesBefore <= 110 && minutesBefore > 0) { // in case of weird time zone issues
