@@ -64,7 +64,7 @@ def getCheckIns():
 recent_comments = ["Welcome to WesPartyMap. Type below to add comments"," "," "," "," "," "," "," "," ",]
 @app.route('/comment', methods=['GET','POST'])
 def comment():
-	global recent_comments
+	recent_comments = get_comments(database.db)
 	if request.method == 'POST':
 
 		comment = str(request.form['message'])
@@ -73,7 +73,7 @@ def comment():
 			if comment == '***admin.clear': recent_comments = ["Welcome to WesPartyMap. Type below to add comments"," "," "," "," "," "," "," "," ",]
 			if comment == '***admin.startsample': dataEmulator()
 			return ''
-		recent_comments = [ x for x in ([comment] + recent_comments[:8]) ]
+		add_comment(database.db, comment)
 		
 		
 		return ''

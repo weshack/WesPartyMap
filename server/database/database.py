@@ -55,7 +55,9 @@ def get_comments(conn):
 
 def add_comment(conn, comment):
 	c = conn.cursor()
+	#print comment
 	c.execute("insert into comments (comment) VALUES ({0})".format(json.dumps(comment)))
+	conn.commit()
 	return ''
 
 def purge_check_ins(conn, time, timeago): #Need to test this
