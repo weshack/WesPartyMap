@@ -1,0 +1,5 @@
+*.pyc
+*.swp
+.DS_Store
+android_app/bin
+android_app/gen
