@@ -87,6 +87,6 @@ def dataEmulator():
 
 
 if __name__ == "__main__":
-    app.secret_key = 'gbn98423jieu394jrfk9je92hk'
-    app.debug = True
+    app.secret_key = 'hi im a secret key and different'
+    app.debug = False
     app.run(host='0.0.0.0')
