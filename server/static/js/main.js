@@ -277,7 +277,7 @@ var checkPos = function(){
 		changed = true;
 	}
 	if (changed){		
-		map.panTo(new google.maps.LatLng(newLat, newLong));
+		//map.panTo(new google.maps.LatLng(newLat, newLong));
 	}
 	setTimeout(checkPos, 500);
 }
